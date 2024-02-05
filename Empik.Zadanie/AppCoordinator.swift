@@ -9,12 +9,17 @@ import UIKit
 
 class AppCoordinator: Coordinator {
     var navigationController: UINavigationController!
-    var network: NetworkProtocol! = Network(service: AccuWeatherService())
+    var network: NetworkProtocol!
     var initialData: Void!
     
     var parentCoordinator: (any Coordinator)?
     
     func start() {
+        network = Network(service:
+                            DemoService()
+                            //AccuWeatherService()
+        )
+        
         let searchCoordinator = CitiesSearchCoordinator()
         searchCoordinator.navigationController = navigationController
         searchCoordinator.network = network
