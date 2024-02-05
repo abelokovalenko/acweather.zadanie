@@ -13,6 +13,7 @@ class AccuWeatherService: ServiceProtocol {
     private let domain = "https://dataservice.accuweather.com"
     private let autocomplete = "/locations/v1/cities/autocomplete"
     private let search = "locations/v1/cities/search"
+    private let weather = "currentconditions/v1"
 
     private let session = URLSession.shared
     
@@ -31,7 +32,7 @@ class AccuWeatherService: ServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func cityLookup(request: CitySearchRequest) -> AnyPublisher<CitiesResponse, ServiceError> {
+    func searchCity(request: CitySearchRequest) -> AnyPublisher<CitiesResponse, ServiceError> {
         let url = URL(string: domain)!
             .appending(path: search)
             .appending(queryItems: [URLQueryItem(name: "q", value: request.query)])
@@ -40,5 +41,12 @@ class AccuWeatherService: ServiceProtocol {
         return dataTask(for: url)
     }
     
-    
+    func weather(request: WeatherRequest) -> AnyPublisher<WeatherResponse, ServiceError> {
+        let url = URL(string: domain)!
+            .appending(path: weather)
+            .appending(path: "\(request.key)")
+            .appending(queryItems: [URLQueryItem(name: "details", value: "true")])
+        
+        return dataTask(for: url)
+    }
 }

@@ -17,6 +17,8 @@ class CitiesSearchViewController: UITableViewController, CitiesSearchView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: add lookup
+        
         title = "Search City"
         
         searchViewModel.setup(for: tableView)

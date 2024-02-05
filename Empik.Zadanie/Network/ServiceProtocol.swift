@@ -13,5 +13,6 @@ enum ServiceError: Error {
 }
 
 protocol ServiceProtocol {
-    func cityLookup(request: CitySearchRequest) -> AnyPublisher<CitiesResponse, ServiceError>
+    func searchCity(request: CitySearchRequest) -> AnyPublisher<CitiesResponse, ServiceError>
+    func weather(request: WeatherRequest) -> AnyPublisher<WeatherResponse, ServiceError>
 }
