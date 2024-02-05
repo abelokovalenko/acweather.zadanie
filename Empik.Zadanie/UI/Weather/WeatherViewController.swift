@@ -19,7 +19,8 @@ class WeatherViewController: UITableViewController, WeatherView {
         title = "Weather"
         tableView.register(UINib(nibName: "WeatherHeaderCell", bundle: nil),
                            forCellReuseIdentifier: "WeatherHeaderCell")
-        
+        tableView.register(UINib(nibName: "ValueCell", bundle: nil),
+                           forCellReuseIdentifier: "ValueCell")
         tableView.delegate = weatherModel
         tableView.dataSource = weatherModel
         

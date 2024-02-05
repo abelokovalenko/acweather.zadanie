@@ -28,7 +28,19 @@ class WeatherHeaderCell: UITableViewCell {
     func setup(with weather: Weather) {
         weatherIcon.image = UIImage(named: "\(weather.weatherIcon)")
         let temp = weather.temperature.metric
-        tempLabel.text = "\(Int(temp.value.rounded()))°\(temp.unit)"
+        let degrees = Int(temp.value.rounded())
+        
+        switch degrees {
+        case _ where degrees < 10:
+            tempLabel.textColor = .blue
+        case 10...20:
+            tempLabel.textColor = .black
+        case _ where degrees > 20:
+            tempLabel.textColor = .red
+        default:
+            tempLabel.textColor = .black
+        }
+        tempLabel.text = "\(degrees)°\(temp.unit)"
         let rfTemp = weather.realFeelTemperature.metric
         feelsLikeLabel.text = "Feels like \(Int(rfTemp.value.rounded()))°"
         summaryLabel.text = weather.weatherText
