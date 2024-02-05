@@ -13,7 +13,7 @@ protocol CitiesSearchView: ViewController {
 }
 
 class CitiesSearchViewModel: NSObject, ViewModel {
-    var coordinator: Coordinator!
+    var coordinator: (any Coordinator)?
     private var searchCoordinator: CitiesSearchCoordinator {
         coordinator as! CitiesSearchCoordinator
     }
@@ -41,6 +41,9 @@ class CitiesSearchViewModel: NSObject, ViewModel {
         }
     }
     private var isSearching = false
+    private func city(index: IndexPath) -> City {
+        found[index.row]
+    }
     
     private var search: AnyCancellable!
 }
@@ -81,7 +84,7 @@ extension CitiesSearchViewModel: UITableViewDataSource {
         
         let cell = UITableViewCell()
         
-        let city = found[indexPath.row]
+        let city = city(index: indexPath)
         
         var contentConfig = cell.defaultContentConfiguration()
         contentConfig.text = city.localizedName
@@ -95,8 +98,7 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        searchCoordinator.id = found[indexPath.row].key
-        searchCoordinator.start()
+        searchCoordinator.navigate(with: .weather(city(index: indexPath).key))
     }
 }
 

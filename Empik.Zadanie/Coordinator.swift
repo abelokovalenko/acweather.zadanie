@@ -8,8 +8,13 @@
 import UIKit
 
 protocol Coordinator {
-    var parentCoordinator: Coordinator? { get set }
-    var navigationController : UINavigationController { get set }
+    associatedtype InitialData
+    associatedtype NavigationData
     
+    var navigationController: UINavigationController! { get set }
+    var network: NetworkProtocol! { get set }
+    var initialData: InitialData! { get set }
+    
+    func navigate(with data: NavigationData)
     func start()
 }

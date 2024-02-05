@@ -7,18 +7,19 @@
 
 import UIKit
 
-class WeatherViewController: UITableViewController {
-        
+class WeatherViewController: UITableViewController, ViewController {
+    var viewModel: ViewModel!
+    var weatherModel: WeatherViewModel {
+        viewModel as! WeatherViewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        title = "Weather"
+        
+        weatherModel.load()
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

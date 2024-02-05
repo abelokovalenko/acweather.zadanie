@@ -8,24 +8,19 @@
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var parentCoordinator: Coordinator?
-    var children: [Coordinator] = []
-    var navigationController: UINavigationController
+    var navigationController: UINavigationController!
+    var network: NetworkProtocol! = Network(service: AccuWeatherService())
+    var initialData: Void!
     
-    init(navigationController : UINavigationController) {
-        self.navigationController = navigationController
-    }
+    var parentCoordinator: (any Coordinator)?
     
     func start() {
-        let searchViewController = CitiesSearchViewController(nibName: "CitiesSearchViewController",
-                                                              bundle: nil)
-
-        let searchViewModel = CitiesSearchViewModel(network: Network(service: AccuWeatherService()))
-        searchViewModel.coordinator = CitiesSearchCoordinator(navigationController: navigationController)
-        searchViewModel.viewController = searchViewController
-
-        searchViewController.viewModel = searchViewModel
-       
-        navigationController.pushViewController(searchViewController, animated: true)
+        let searchCoordinator = CitiesSearchCoordinator()
+        searchCoordinator.navigationController = navigationController
+        searchCoordinator.network = network
+               
+        searchCoordinator.start()
     }
+    
+    func navigate(with data: Void) {}
 }
