@@ -31,4 +31,14 @@ class CitiesSearchViewController: UIViewController, CitiesSearchView {
         tableView.reloadData()
     }
     
+    func show(error: Error) {
+        let alertController = UIAlertController(title: "Error".localized,
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+            
+        let okAction = UIAlertAction(title: "OK".localized, style: .default)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
 }

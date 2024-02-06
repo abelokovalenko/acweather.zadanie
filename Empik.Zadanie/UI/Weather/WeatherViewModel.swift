@@ -8,18 +8,29 @@
 import UIKit
 import Combine
 
+enum PressureTendency: String {
+    case falling = "F"
+    case steady = "S"
+    case rising = "R"
+}
+
 protocol WeatherView: ViewController {
+    func set(title: String)
     func reload()
 }
 
 class WeatherViewModel: NSObject, ViewModel {
     var coordinator: (any Coordinator)?
-    var viewController: UIViewController!
+    var viewController: UIViewController! {
+        didSet {
+            weatherView.set(title: city.localizedName)
+        }
+    }
     private var weatherView: WeatherView {
         viewController as! WeatherView
     }
     
-    private var key: String
+    private var city: City
     private var network: NetworkProtocol
     private var request: AnyCancellable!
     private var weather: Weather! {
@@ -30,14 +41,14 @@ class WeatherViewModel: NSObject, ViewModel {
     }
     private var weatherData = [NamedValue]()
 
-    init(key: String, network: NetworkProtocol) {
-        self.key = key
+    init(city: City, network: NetworkProtocol) {
+        self.city = city
         self.network = network
     }
-    
+        
     func load() {
         request =
-        network.weather(key: key)
+        network.weather(key: city.key)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 //...
@@ -47,20 +58,48 @@ class WeatherViewModel: NSObject, ViewModel {
     }
     
     private func weatherData(from weather: Weather) -> [NamedValue] {
-        let wind = weather.wind.Speed.metric
-        let windGusts = weather.windGust.Speed.metric
-        var humidity = "--"
-        if let relativeHumidity = weather.relativeHumidity {
-            humidity = String(relativeHumidity)
-        }
-        let pressure = weather.pressure.metric
+
+        let pressure = weather.pressure
         return [
-            NamedValue(name: "Wind", value: "\(wind.value) \(wind.unit)"),
-            NamedValue(name: "Wind gusts", value: "\(windGusts.value) \(windGusts.unit)"),
-            NamedValue(name: "Humidity", value: "\(humidity)%"),
-            NamedValue(name: "Pressure", value: "\(pressure.value) \(pressure.unit) (\(weather.pressureTendency.localizedText))"),
-            NamedValue(name: "Cloud Cover", value: "\(weather.cloudCover)%")
+            NamedValue(name: "Wind", value: string(for: weather.wind)),
+            NamedValue(name: "Wind gusts", value: string(for: weather.windGust)),
+            NamedValue(name: "Humidity", value: percentString(for: weather.relativeHumidity)),
+            NamedValue(name: "Pressure", value: string(for: weather.pressure,
+                                                       tendency: weather.pressureTendency)),
+            NamedValue(name: "Cloud Cover", value: percentString(for: weather.cloudCover))
         ]
+    }
+    
+    private func string(for wind: Wind) -> String {
+        var directionString = ""
+        if let direction = wind.direction {
+            directionString = "\(direction) "
+        }
+        return "\(directionString)\(wind.speed.value) \(wind.speed.unit)"
+    }
+
+    private func percentString(for value: Int?) -> String {
+        var valueString = "--"
+        if let value = value {
+            valueString = String(value)
+        }
+        
+        return "\(valueString)%"
+    }
+    
+    private func string(for pressure: Value, tendency: LocalizedValue) -> String {
+        var tendencyString = ""
+        switch PressureTendency(rawValue: tendency.code) {
+        case .falling:
+            tendencyString = "↓ "
+        case .rising:
+            tendencyString = "↑ "
+        case .steady:
+            tendencyString = "→ "
+        default:
+            break
+        }
+        return "\(tendencyString)\(pressure.value) \(pressure.unit)"
     }
 }
 
@@ -70,7 +109,7 @@ extension WeatherViewModel: UITableViewDelegate {
 
 extension WeatherViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let weather {
+        if weather != nil {
             return weatherData.count + 1
         }
         

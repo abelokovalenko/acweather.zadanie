@@ -27,7 +27,7 @@ class WeatherHeaderCell: UITableViewCell {
     
     func setup(with weather: Weather) {
         weatherIcon.image = UIImage(named: "\(weather.weatherIcon)")
-        let temp = weather.temperature.metric
+        let temp = weather.temperature
         let degrees = Int(temp.value.rounded())
         
         switch degrees {
@@ -41,7 +41,7 @@ class WeatherHeaderCell: UITableViewCell {
             tempLabel.textColor = .black
         }
         tempLabel.text = "\(degrees)°\(temp.unit)"
-        let rfTemp = weather.realFeelTemperature.metric
+        let rfTemp = weather.realFeelTemperature
         feelsLikeLabel.text = "\("Feels like".localized) \(Int(rfTemp.value.rounded()))°"
         summaryLabel.text = weather.weatherText
     }

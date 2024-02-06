@@ -9,4 +9,5 @@ import UIKit
 
 protocol ViewController: UIViewController {
     var viewModel: ViewModel! { get set }
+    func show(error: Error)
 }

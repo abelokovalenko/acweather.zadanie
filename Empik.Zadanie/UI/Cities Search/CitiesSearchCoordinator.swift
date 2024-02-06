@@ -8,7 +8,7 @@
 import UIKit
 
 enum CitiesSearchCoordinatorNavigation {
-    case weather(String)
+    case weather(City)
 }
 
 class CitiesSearchCoordinator: Coordinator {
@@ -31,11 +31,11 @@ class CitiesSearchCoordinator: Coordinator {
     }
 
     func navigate(with data: CitiesSearchCoordinatorNavigation) {
-        if case let .weather(key) = data {
+        if case let .weather(city) = data {
             let weatherCoordinator = WeatherCoordinator()
             weatherCoordinator.network = network
             weatherCoordinator.navigationController = navigationController
-            weatherCoordinator.initialData = key
+            weatherCoordinator.initialData = city
             
             weatherCoordinator.start()
         }

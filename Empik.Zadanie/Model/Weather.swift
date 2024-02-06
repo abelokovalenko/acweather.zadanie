@@ -29,42 +29,44 @@ struct Value: Decodable {
     let unitType: Int
     
     enum CodingKeys: String, CodingKey {
+        case metric = "Metric"
         case value = "Value"
         case unit = "Unit"
         case unitType = "UnitType"
     }
     
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.decode(Double.self, forKey: .value)
-        self.unit = try container.decode(String.self, forKey: .unit)
-        self.unitType = try container.decode(Int.self, forKey: .unitType)
+        let mainContainer = try decoder.container(keyedBy: CodingKeys.self)
+        let metricContainer = try mainContainer.nestedContainer(keyedBy: CodingKeys.self,
+                                                            forKey: .metric)
+        
+        self.value = try metricContainer.decode(Double.self, forKey: .value)
+        self.unit = try metricContainer.decode(String.self, forKey: .unit)
+        self.unitType = try metricContainer.decode(Int.self, forKey: .unitType)
     }
 }
 
 struct Wind: Decodable {
-    struct Direction: Decodable {
-      let degrees: Double
-        let Localized: String
-        let English: String
-    }
-    
-    let Speed: CombinedValue
-}
-
-struct CombinedValue: Decodable {
-    let metric: Value
-    let imperial: Value
+    let direction: String?
+    let speed: Value
     
     enum CodingKeys: String, CodingKey {
-        case metric = "Metric"
-        case imperial = "Imperial"
+        case direction = "Direction"
+        case localized = "Localized"
+        case speed = "Speed"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.metric = try container.decode(Value.self, forKey: .metric)
-        self.imperial = try container.decode(Value.self, forKey: .imperial)
+        if let directionContainer = try? container.nestedContainer(keyedBy: CodingKeys.self,
+                                                                   forKey: .direction) {
+            
+            direction = try? directionContainer.decode(String.self, forKey: .localized)
+        } else {
+            direction = nil
+        }
+        
+        speed = try container.decode(Value.self, forKey: .speed)
     }
 }
 
@@ -74,17 +76,17 @@ struct Weather: Decodable {
     let hasPrecipitation: Bool
     let precipitationType: String?
     let isDayTime: Bool
-    let temperature: CombinedValue
-    let realFeelTemperature: CombinedValue
+    let temperature: Value
+    let realFeelTemperature: Value
     let relativeHumidity: Int?
     let wind: Wind
     let windGust: Wind
     let UVIndex: Int
     let UVIndexText: String
     
-    let visibility: CombinedValue
+    let visibility: Value
     let cloudCover: Int
-    let pressure: CombinedValue
+    let pressure: Value
     let pressureTendency: LocalizedValue
     
     enum CodingKeys: String, CodingKey {
@@ -113,16 +115,16 @@ struct Weather: Decodable {
         self.hasPrecipitation = try container.decode(Bool.self, forKey: .hasPrecipitation)
         self.precipitationType = try container.decodeIfPresent(String.self, forKey: .precipitationType)
         self.isDayTime = try container.decode(Bool.self, forKey: .isDayTime)
-        self.temperature = try container.decode(CombinedValue.self, forKey: .temperature)
-        self.realFeelTemperature = try container.decode(CombinedValue.self, forKey: .realFeelTemperature)
+        self.temperature = try container.decode(Value.self, forKey: .temperature)
+        self.realFeelTemperature = try container.decode(Value.self, forKey: .realFeelTemperature)
         self.relativeHumidity = try container.decodeIfPresent(Int.self, forKey: .relativeHumidity)
         self.wind = try container.decode(Wind.self, forKey: .wind)
         self.windGust = try container.decode(Wind.self, forKey: .windGust)
         self.UVIndex = try container.decode(Int.self, forKey: .uvIndex)
         self.UVIndexText = try container.decode(String.self, forKey: .uvIndexText)
-        self.visibility = try container.decode(CombinedValue.self, forKey: .visibility)
+        self.visibility = try container.decode(Value.self, forKey: .visibility)
         self.cloudCover = try container.decode(Int.self, forKey: .cloudCover)
-        self.pressure = try container.decode(CombinedValue.self, forKey: .pressure)
+        self.pressure = try container.decode(Value.self, forKey: .pressure)
         self.pressureTendency = try container.decode(LocalizedValue.self, forKey: .pressureTendency)
     }
 }

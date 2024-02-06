@@ -107,7 +107,7 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        searchCoordinator.navigate(with: .weather(city(index: indexPath).key))
+        searchCoordinator.navigate(with: .weather(city(index: indexPath)))
     }
 }
 

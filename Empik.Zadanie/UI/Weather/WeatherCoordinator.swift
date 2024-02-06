@@ -14,12 +14,12 @@ enum WeatherCoordinatorDirection {
 class WeatherCoordinator: Coordinator {
     var navigationController: UINavigationController!
     var network: NetworkProtocol!
-    var initialData: String!
+    var initialData: City!
     
     func start() {
-        guard let key = initialData else { return }
+        guard let city = initialData else { return }
         
-        let model = WeatherViewModel(key: key, network: network)
+        let model = WeatherViewModel(city: city, network: network)
         let viewController = WeatherViewController(nibName: "WeatherViewController", bundle: nil)
         viewController.viewModel = model
         
