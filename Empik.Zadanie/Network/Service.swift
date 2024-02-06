@@ -17,18 +17,19 @@ class AccuWeatherService: ServiceProtocol {
 
     private let session = URLSession.shared
     
-    private func addKey(to url: URL) -> URL {
-        url.appending(queryItems: [URLQueryItem(name: "apikey", value: apiKey)])
+    private func globalQuery(from url: URL) -> URL {
+        url.appending(queryItems: [
+            URLQueryItem(name: "apikey", value: apiKey),
+            URLQueryItem(name: "language", value: Locale.current.identifier)
+        ])
     }
     
     private func dataTask<Response: Decodable>(for url: URL) -> AnyPublisher<Response, ServiceError> {
-        session.dataTaskPublisher(for: addKey(to: url))
+        session.dataTaskPublisher(for: globalQuery(from: url))
             .subscribe(on: DispatchQueue.global(qos: .background))
             .map { $0.data }
             .decode(type: Response.self, decoder: JSONDecoder())
-            .mapError { _ in
-                ServiceError.common
-            }
+            .mapError { _ in ServiceError.common }
             .eraseToAnyPublisher()
     }
     
@@ -36,7 +37,6 @@ class AccuWeatherService: ServiceProtocol {
         let url = URL(string: domain)!
             .appending(path: search)
             .appending(queryItems: [URLQueryItem(name: "q", value: request.query)])
-        
         
         return dataTask(for: url)
     }

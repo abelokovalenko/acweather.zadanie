@@ -7,7 +7,9 @@
 
 import UIKit
 
-class CitiesSearchViewController: UITableViewController, CitiesSearchView {
+class CitiesSearchViewController: UIViewController, CitiesSearchView {
+    @IBOutlet private weak var tableView: UITableView!
+    
     var viewModel: ViewModel!
     
     var searchViewModel: CitiesSearchViewModel {
@@ -19,17 +21,10 @@ class CitiesSearchViewController: UITableViewController, CitiesSearchView {
         
         // TODO: add lookup
         
-        title = "Search City"
+        title = "Search City".localized
+        navigationItem.backButtonTitle = ""
         
         searchViewModel.setup(for: tableView)
-        
-        let searchBar = UISearchBar()
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        searchBar.showsCancelButton = true
-        
-        searchBar.delegate = searchViewModel
-        tableView.tableHeaderView = searchBar
     }
     
     func reload() {

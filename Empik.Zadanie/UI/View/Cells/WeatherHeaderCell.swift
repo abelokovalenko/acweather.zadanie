@@ -42,7 +42,7 @@ class WeatherHeaderCell: UITableViewCell {
         }
         tempLabel.text = "\(degrees)°\(temp.unit)"
         let rfTemp = weather.realFeelTemperature.metric
-        feelsLikeLabel.text = "Feels like \(Int(rfTemp.value.rounded()))°"
+        feelsLikeLabel.text = "\("Feels like".localized) \(Int(rfTemp.value.rounded()))°"
         summaryLabel.text = weather.weatherText
     }
 }

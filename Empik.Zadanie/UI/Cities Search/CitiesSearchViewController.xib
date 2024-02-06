@@ -10,17 +10,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CitiesSearchViewController" customModule="Empik_Zadanie" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="tableView" destination="fCQ-BE-zgU" id="ZYd-nq-216"/>
+                <outlet property="view" destination="KL4-nw-7p4" id="Ssd-TE-4Hn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="KL4-nw-7p4">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <viewLayoutGuide key="safeArea" id="vLr-E1-eTs"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fCQ-BE-zgU">
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="n1D-tg-jTM"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="54" y="21"/>
-        </tableView>
+            <constraints>
+                <constraint firstItem="n1D-tg-jTM" firstAttribute="trailing" secondItem="fCQ-BE-zgU" secondAttribute="trailing" id="3Sj-Vw-AI1"/>
+                <constraint firstAttribute="bottom" secondItem="fCQ-BE-zgU" secondAttribute="bottom" id="HKP-i8-WcH"/>
+                <constraint firstItem="fCQ-BE-zgU" firstAttribute="top" secondItem="n1D-tg-jTM" secondAttribute="top" id="PWP-I1-qJg"/>
+                <constraint firstItem="fCQ-BE-zgU" firstAttribute="leading" secondItem="n1D-tg-jTM" secondAttribute="leading" id="kBo-Gn-HV2"/>
+            </constraints>
+            <point key="canvasLocation" x="-1265" y="-764"/>
+        </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">

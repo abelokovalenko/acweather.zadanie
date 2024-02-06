@@ -46,6 +46,15 @@ class CitiesSearchViewModel: NSObject, ViewModel {
     }
     
     private var search: AnyCancellable!
+    
+    func search(query: String) {
+        isSearching = true
+        
+        search = network.searchCity(request: query)
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.found, on: self)
+    }
 }
 
 extension CitiesSearchViewModel: UITableViewDelegate {
@@ -60,9 +69,9 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let searchBar = UISearchBar()
         searchBar.showsCancelButton = true
-        
+
         searchBar.delegate = self
-        
+
         return searchBar
     }
     
@@ -104,12 +113,6 @@ extension CitiesSearchViewModel: UITableViewDataSource {
 
 extension CitiesSearchViewModel: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        isSearching = true
-        
-        search = network.searchCity(request: searchBar.text ?? "")
-            .replaceError(with: [])
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.found, on: self)
-        searchBar.resignFirstResponder()
+        search(query: searchBar.text ?? "")
     }
 }

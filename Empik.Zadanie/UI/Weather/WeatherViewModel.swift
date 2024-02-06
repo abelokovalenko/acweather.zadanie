@@ -24,13 +24,7 @@ class WeatherViewModel: NSObject, ViewModel {
     private var request: AnyCancellable!
     private var weather: Weather! {
         didSet {
-            weatherData = [
-                NamedValue(name: "Wind", value: "\(weather.wind.Speed.metric.value) \(weather.wind.Speed.metric.unit)"),
-                NamedValue(name: "Wind gusts", value: "\(weather.windGust.Speed.metric.value) \(weather.windGust.Speed.metric.unit)"),
-                NamedValue(name: "Humidity", value: "\(weather.relativeHumidity ?? 0)%"),
-                NamedValue(name: "Pressure", value: "\(weather.pressure.metric.value) \(weather.pressure.metric.unit)")
-            ]
-            
+            weatherData = weatherData(from: weather)   
             weatherView.reload()
         }
     }
@@ -50,6 +44,23 @@ class WeatherViewModel: NSObject, ViewModel {
             }, receiveValue: { weather in
                 self.weather = weather
             })
+    }
+    
+    private func weatherData(from weather: Weather) -> [NamedValue] {
+        let wind = weather.wind.Speed.metric
+        let windGusts = weather.windGust.Speed.metric
+        var humidity = "--"
+        if let relativeHumidity = weather.relativeHumidity {
+            humidity = String(relativeHumidity)
+        }
+        let pressure = weather.pressure.metric
+        return [
+            NamedValue(name: "Wind", value: "\(wind.value) \(wind.unit)"),
+            NamedValue(name: "Wind gusts", value: "\(windGusts.value) \(windGusts.unit)"),
+            NamedValue(name: "Humidity", value: "\(humidity)%"),
+            NamedValue(name: "Pressure", value: "\(pressure.value) \(pressure.unit) (\(weather.pressureTendency.localizedText))"),
+            NamedValue(name: "Cloud Cover", value: "\(weather.cloudCover)%")
+        ]
     }
 }
 
