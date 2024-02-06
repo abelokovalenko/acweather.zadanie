@@ -15,7 +15,7 @@ class Network: NetworkProtocol {
         self.service = service
     }
     
-    func searchCity(request: String) -> AnyPublisher<[City], NetworkError> {
+    func searchCity(request: String) -> AnyPublisher<[AWCity], NetworkError> {
         let request = CitySearchRequest(query: request)
         return service.searchCity(request: request)
             .mapError { _ in NetworkError.common }

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol NetworkProtocol {
-    func searchCity(request: String) -> AnyPublisher<[City], NetworkError>
+    func searchCity(request: String) -> AnyPublisher<[AWCity], NetworkError>
     
     func weather(key: String) -> AnyPublisher<Weather, NetworkError>
 }

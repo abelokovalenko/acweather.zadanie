@@ -8,6 +8,17 @@
 import UIKit
 
 class CitiesSearchViewController: UIViewController, CitiesSearchView {
+    func showActivity() {
+        let actiivity = UIActivityIndicatorView()
+        actiivity.frame.size.height = 50
+        actiivity.startAnimating()
+        tableView.tableFooterView = actiivity
+    }
+    
+    func hideActivity() {
+        tableView.tableFooterView = nil
+    }
+    
     @IBOutlet private weak var tableView: UITableView!
     
     var viewModel: ViewModel!
@@ -21,10 +32,15 @@ class CitiesSearchViewController: UIViewController, CitiesSearchView {
         
         // TODO: add lookup
         
-        title = "Search City".localized
+        title = "Cities".localized
         navigationItem.backButtonTitle = ""
         
         searchViewModel.setup(for: tableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchViewModel.viewWillAppear()
     }
     
     func reload() {

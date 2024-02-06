@@ -22,7 +22,6 @@ class WeatherViewController: UITableViewController, WeatherView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Weather"
         tableView.register(UINib(nibName: "WeatherHeaderCell", bundle: nil),
                            forCellReuseIdentifier: "WeatherHeaderCell")
         tableView.register(UINib(nibName: "ValueCell", bundle: nil),
@@ -47,7 +46,7 @@ class WeatherViewController: UITableViewController, WeatherView {
         weatherModel.load()
     }
     
-    func set(title: String) {
+    func set(title: String?) {
         self.title = title
     }
 

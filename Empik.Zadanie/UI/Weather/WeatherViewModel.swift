@@ -15,7 +15,7 @@ enum PressureTendency: String {
 }
 
 protocol WeatherView: ViewController {
-    func set(title: String)
+    func set(title: String?)
     func reload()
 }
 
@@ -23,7 +23,7 @@ class WeatherViewModel: NSObject, ViewModel {
     var coordinator: (any Coordinator)?
     var viewController: UIViewController! {
         didSet {
-            weatherView.set(title: city.localizedName)
+            weatherView.set(title: city.name)
         }
     }
     private var weatherView: WeatherView {
@@ -59,7 +59,6 @@ class WeatherViewModel: NSObject, ViewModel {
     
     private func weatherData(from weather: Weather) -> [NamedValue] {
 
-        let pressure = weather.pressure
         return [
             NamedValue(name: "Wind", value: string(for: weather.wind)),
             NamedValue(name: "Wind gusts", value: string(for: weather.windGust)),

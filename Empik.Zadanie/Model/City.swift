@@ -42,7 +42,7 @@ struct GeoPosition: Decodable {
     }
 }
 
-struct City: Decodable {
+struct AWCity: Decodable {
     let key: String
     let type: String
     let rank: Int
@@ -74,4 +74,10 @@ struct City: Decodable {
         self.administrativeArea = try container.decode(AdmArea.self, forKey: .administrativeArea)
         self.geoPosition = try container.decode(GeoPosition.self, forKey: .geoPosition)
     }
+}
+
+struct City {
+    let key: String
+    let description: String?
+    let name: String?
 }

@@ -10,9 +10,44 @@ import Combine
 
 protocol CitiesSearchView: ViewController {
     func reload()
+    func showActivity()
+    func hideActivity()
+}
+
+protocol Source {
+    var count: Int { get }
+    func city(at: Int) -> City?
+}
+
+extension Array<City>: Source {
+    func city(at idx: Int) -> City? {
+        self[safe: idx]
+    }
 }
 
 class CitiesSearchViewModel: NSObject, ViewModel {
+    enum State {
+        case search
+        case history
+    }
+
+    private var state = State.history
+    private var storage: Storage! = CDStorage()
+    private var searchResults = [City]() {
+        didSet {
+            searchView.reload()
+        }
+    }
+    
+    private var source: Source {
+        switch state {
+        case .history:
+            return storage
+        case .search:
+            return searchResults
+        }
+    }
+    
     var coordinator: (any Coordinator)?
     private var searchCoordinator: CitiesSearchCoordinator {
         coordinator as! CitiesSearchCoordinator
@@ -34,26 +69,47 @@ class CitiesSearchViewModel: NSObject, ViewModel {
         tableView.dataSource = self
     }
     
-    private var found = [City]() {
+
+    private func city(index: IndexPath) -> City? {
+        source.city(at: index.row)
+    }
+    
+    private var search: AnyCancellable! {
         didSet {
-            isSearching = false
-            searchView.reload()
+            if search == nil {
+                searchView.hideActivity()
+            }
         }
     }
-    private var isSearching = false
-    private func city(index: IndexPath) -> City {
-        found[index.row]
-    }
-    
-    private var search: AnyCancellable!
     
     func search(query: String) {
-        isSearching = true
+        state = .search
+        searchResults = []
+        searchView.showActivity()
         
         search = network.searchCity(request: query)
-            .replaceError(with: [])
             .receive(on: DispatchQueue.main)
-            .assign(to: \.found, on: self)
+            .map { $0.map { awcity in
+                City(key: awcity.key,
+                     description: "\(awcity.country.localizedName), \(awcity.administrativeArea.localizedName)",
+                     name: awcity.localizedName)
+            }}
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let self else { return }
+                
+                self.searchView.hideActivity()
+                if case let .failure(error) = completion {
+                    self.searchView.show(error: error)
+                }
+            }, receiveValue: { [weak self] value in
+                self?.searchResults = value
+            })
+    }
+    
+    func viewWillAppear() {
+        if state == .history {
+            searchView.reload()
+        }
     }
 }
 
@@ -65,7 +121,7 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         50
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let searchBar = UISearchBar()
         searchBar.showsCancelButton = true
@@ -76,30 +132,21 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isSearching ? 0 : found.count
+        source.count
     }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if isSearching {
-            let progress = UIActivityIndicatorView()
-            progress.startAnimating()
-            return progress
-        }
-        
-        return nil
-    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
         
-        let city = city(index: indexPath)
-        
-        var contentConfig = cell.defaultContentConfiguration()
-        contentConfig.text = city.localizedName
-        contentConfig.secondaryText = "\(city.country.localizedName), \(city.administrativeArea.localizedName)"
-        
-        cell.contentConfiguration = contentConfig
+        if let city = city(index: indexPath) {
+            
+            var contentConfig = cell.defaultContentConfiguration()
+            contentConfig.text = city.name
+            contentConfig.secondaryText = city.description
+            
+            cell.contentConfiguration = contentConfig
+        }
         
         return cell
     }
@@ -107,11 +154,20 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        searchCoordinator.navigate(with: .weather(city(index: indexPath)))
+        if let city = city(index: indexPath) {
+            storage.append(city: city)
+            searchCoordinator.navigate(with: .weather(city))
+        }
     }
 }
 
 extension CitiesSearchViewModel: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        state = .history
+        searchView.reload()
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         search(query: searchBar.text ?? "")
     }

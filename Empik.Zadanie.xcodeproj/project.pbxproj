@@ -51,6 +51,12 @@
 		207C5F572B717C430071F281 /* ValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207C5F552B717C430071F281 /* ValueCell.xib */; };
 		207C5F592B717CCB0071F281 /* NamedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F582B717CCB0071F281 /* NamedValue.swift */; };
 		207C5F5C2B7194CF0071F281 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F5B2B7194CF0071F281 /* String.swift */; };
+		207C5F5F2B72870A0071F281 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F5E2B72870A0071F281 /* Storage.swift */; };
+		207C5F612B728CA70071F281 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F602B728CA70071F281 /* Collection.swift */; };
+		207C5F632B7292BE0071F281 /* StoredCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F622B7292BE0071F281 /* StoredCity.swift */; };
+		207C5F662B7293080071F281 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F642B7293080071F281 /* Storage.xcdatamodeld */; };
+		207C5F682B7296140071F281 /* CDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F672B7296140071F281 /* CDStorage.swift */; };
+		207C5F6A2B72ACA00071F281 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C5F692B72ACA00071F281 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +125,12 @@
 		207C5F552B717C430071F281 /* ValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ValueCell.xib; sourceTree = "<group>"; };
 		207C5F582B717CCB0071F281 /* NamedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedValue.swift; sourceTree = "<group>"; };
 		207C5F5B2B7194CF0071F281 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		207C5F5E2B72870A0071F281 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		207C5F602B728CA70071F281 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		207C5F622B7292BE0071F281 /* StoredCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredCity.swift; sourceTree = "<group>"; };
+		207C5F652B7293080071F281 /* Storage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storage.xcdatamodel; sourceTree = "<group>"; };
+		207C5F672B7296140071F281 /* CDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDStorage.swift; sourceTree = "<group>"; };
+		207C5F692B72ACA00071F281 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +194,7 @@
 				207C5EDC2B70F5830071F281 /* ViewController.swift */,
 				207C5EDE2B70F5830071F281 /* Main.storyboard */,
 				207C5EE12B70F5840071F281 /* Assets.xcassets */,
+				207C5F5D2B7286F00071F281 /* Storage */,
 				207C5EE32B70F5840071F281 /* LaunchScreen.storyboard */,
 				207C5EE62B70F5840071F281 /* Info.plist */,
 			);
@@ -275,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				207C5F332B713F1F0071F281 /* Cells */,
+				207C5F692B72ACA00071F281 /* SearchBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,8 +330,20 @@
 			isa = PBXGroup;
 			children = (
 				207C5F5B2B7194CF0071F281 /* String.swift */,
+				207C5F602B728CA70071F281 /* Collection.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		207C5F5D2B7286F00071F281 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				207C5F5E2B72870A0071F281 /* Storage.swift */,
+				207C5F622B7292BE0071F281 /* StoredCity.swift */,
+				207C5F672B7296140071F281 /* CDStorage.swift */,
+				207C5F642B7293080071F281 /* Storage.xcdatamodeld */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,7 +484,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				207C5F6A2B72ACA00071F281 /* SearchBar.swift in Sources */,
 				207C5F2D2B7136830071F281 /* Coordinator.swift in Sources */,
+				207C5F632B7292BE0071F281 /* StoredCity.swift in Sources */,
 				207C5F482B715B120071F281 /* WeatherViewModel.swift in Sources */,
 				207C5F0F2B70F6480071F281 /* APIManager.swift in Sources */,
 				207C5F2F2B7136B50071F281 /* AppCoordinator.swift in Sources */,
@@ -475,7 +503,9 @@
 				207C5F4B2B716BE60071F281 /* WeatherHeaderCell.swift in Sources */,
 				207C5EDB2B70F5830071F281 /* SceneDelegate.swift in Sources */,
 				207C5F422B7153740071F281 /* WeatherRequest.swift in Sources */,
+				207C5F662B7293080071F281 /* Storage.xcdatamodeld in Sources */,
 				207C5F232B7103680071F281 /* NetworkProtocol.swift in Sources */,
+				207C5F612B728CA70071F281 /* Collection.swift in Sources */,
 				207C5F592B717CCB0071F281 /* NamedValue.swift in Sources */,
 				207C5F312B71388A0071F281 /* ViewModel.swift in Sources */,
 				207C5F562B717C430071F281 /* ValueCell.swift in Sources */,
@@ -485,8 +515,10 @@
 				207C5F292B7104600071F281 /* ServiceProtocol.swift in Sources */,
 				207C5F212B71033C0071F281 /* CitySearchRequest.swift in Sources */,
 				207C5F462B71592A0071F281 /* WeatherCoordinator.swift in Sources */,
+				207C5F682B7296140071F281 /* CDStorage.swift in Sources */,
 				207C5F252B7103D60071F281 /* NetworkError.swift in Sources */,
 				207C5F102B70F6480071F281 /* CitiesSearchViewModel.swift in Sources */,
+				207C5F5F2B72870A0071F281 /* Storage.swift in Sources */,
 				207C5F272B7103FF0071F281 /* Network.swift in Sources */,
 				207C5F1E2B7102EA0071F281 /* CitiesResponse.swift in Sources */,
 			);
@@ -830,6 +862,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		207C5F642B7293080071F281 /* Storage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				207C5F652B7293080071F281 /* Storage.xcdatamodel */,
+			);
+			currentVersion = 207C5F652B7293080071F281 /* Storage.xcdatamodel */;
+			path = Storage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 207C5ECD2B70F5830071F281 /* Project object */;
 }

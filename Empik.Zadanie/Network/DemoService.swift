@@ -26,9 +26,11 @@ class DemoService: ServiceProtocol {
             let response = try JSONDecoder().decode(T.self, from: jsonData)
             return Just(response)
                 .setFailureType(to: ServiceError.self)
+                .delay(for: 0.5, scheduler: RunLoop.main)
                 .eraseToAnyPublisher()
         } catch {
             return Fail(error: ServiceError.common)
+                .delay(for: 0.5, scheduler: RunLoop.main)
                 .eraseToAnyPublisher()
         }
     }

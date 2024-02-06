@@ -20,7 +20,7 @@ class CitySearchViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(with city: City) {
+    func setup(with city: AWCity) {
         
     }
 }
