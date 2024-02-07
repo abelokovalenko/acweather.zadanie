@@ -7,18 +7,15 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: CoordinatorProtocol {
     var navigationController: UINavigationController!
     var network: NetworkProtocol!
     var initialData: Void!
     
-    var parentCoordinator: (any Coordinator)?
+    var parentCoordinator: (any CoordinatorProtocol)?
     
     func start() {
-        network = Network(service:
-                            DemoService()
-                            //AccuWeatherService()
-        )
+        network = Network(service: service)
         
         let searchCoordinator = CitiesSearchCoordinator()
         searchCoordinator.navigationController = navigationController
@@ -27,5 +24,14 @@ class AppCoordinator: Coordinator {
         searchCoordinator.start()
     }
     
-    func navigate(with data: Void) {}
+    func navigate(to data: Void) {}
+    
+    private var service: ServiceProtocol {
+        switch SettingsBundleHelper.source {
+        case .demo:
+            return DemoService()
+        case .server:
+            return AWService()
+        }
+    }
 }

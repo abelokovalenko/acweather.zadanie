@@ -7,11 +7,11 @@
 
 import UIKit
 
-enum WeatherCoordinatorDirection {
+enum WeatherCoordinatorNavigation {
     case back
 }
 
-class WeatherCoordinator: Coordinator {
+class WeatherCoordinator: CoordinatorProtocol {
     var navigationController: UINavigationController!
     var network: NetworkProtocol!
     var initialData: City!
@@ -28,7 +28,7 @@ class WeatherCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    func navigate(with data: WeatherCoordinatorDirection) {
+    func navigate(to data: WeatherCoordinatorNavigation) {
         switch data {
         case .back:
             navigationController.popViewController(animated: true)

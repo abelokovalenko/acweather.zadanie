@@ -9,6 +9,7 @@ import UIKit
 
 class WeatherHeaderCell: UITableViewCell {
 
+    @IBOutlet weak var background: UIView!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var feelsLikeLabel: UILabel!
@@ -16,13 +17,8 @@ class WeatherHeaderCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        background.layer.cornerRadius = 10
     }
     
     func setup(with weather: Weather) {
@@ -40,7 +36,7 @@ class WeatherHeaderCell: UITableViewCell {
         default:
             tempLabel.textColor = .black
         }
-        tempLabel.text = "\(degrees)°\(temp.unit)"
+        tempLabel.text = "\(degrees)°"
         let rfTemp = weather.realFeelTemperature
         feelsLikeLabel.text = "\("Feels like".localized) \(Int(rfTemp.value.rounded()))°"
         summaryLabel.text = weather.weatherText

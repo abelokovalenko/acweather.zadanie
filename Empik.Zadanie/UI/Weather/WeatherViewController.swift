@@ -12,11 +12,17 @@ class WeatherViewController: UITableViewController, WeatherView {
     
     func show(error: Error) {
         stopRefreshing()
+        
+        dialogue(title: "Error".localized,
+                 description: error.localizedDescription,
+                 actionTitle: "Ok".localized) { [weak self] in
+            self?.weatherModel?.closeIfNoData()
+        }
     }
     
-    var viewModel: ViewModel!
-    var weatherModel: WeatherViewModel {
-        viewModel as! WeatherViewModel
+    var viewModel: ViewModelProtocol!
+    private var weatherModel: WeatherViewModel? {
+        viewModel as? WeatherViewModel
     }
     
     override func viewDidLoad() {
@@ -26,6 +32,8 @@ class WeatherViewController: UITableViewController, WeatherView {
                            forCellReuseIdentifier: "WeatherHeaderCell")
         tableView.register(UINib(nibName: "ValueCell", bundle: nil),
                            forCellReuseIdentifier: "ValueCell")
+        tableView.register(UINib(nibName: "HourlyForecastTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "HourlyForecastTableViewCell")
         tableView.delegate = weatherModel
         tableView.dataSource = weatherModel
 
@@ -41,20 +49,17 @@ class WeatherViewController: UITableViewController, WeatherView {
             tableView.refreshControl?.sendActions(for: .valueChanged)
         }
     }
-    
-    @objc func pullToRefresh() {
-        weatherModel.load()
-    }
-    
-    func set(title: String?) {
-        self.title = title
-    }
-
+        
     func reload() {
         stopRefreshing()
         tableView.reloadData()
     }
     
+    @objc
+    private func pullToRefresh() {
+        weatherModel?.load()
+    }
+
     private func stopRefreshing() {
         tableView.refreshControl?.endRefreshing()
     }

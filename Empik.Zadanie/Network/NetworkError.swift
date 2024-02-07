@@ -8,5 +8,17 @@
 import Foundation
 
 enum NetworkError: Error {
-    case common
+    case service(ServiceError)
+    case common(String)
+}
+
+extension NetworkError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .service(let serviceError):
+            return serviceError.localizedDescription
+        case .common(let text):
+            return text
+        }
+    }
 }

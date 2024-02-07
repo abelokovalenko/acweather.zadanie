@@ -1,0 +1,198 @@
+[
+  {
+    "DateTime": "2024-02-06T23:00:00+01:00",
+    "EpochDateTime": 1707256800,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.6,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 44,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=1&hbhhour=23&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=1&hbhhour=23&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T00:00:00+01:00",
+    "EpochDateTime": 1707260400,
+    "WeatherIcon": 33,
+    "IconPhrase": "Showers",
+    "HasPrecipitation": true,
+    "PrecipitationType": "Rain",
+    "PrecipitationIntensity": "Light",
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.6,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 51,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=0&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=0&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T01:00:00+01:00",
+    "EpochDateTime": 1707264000,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.8,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 40,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=1&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=1&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T02:00:00+01:00",
+    "EpochDateTime": 1707267600,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.8,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 34,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=2&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=2&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T03:00:00+01:00",
+    "EpochDateTime": 1707271200,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.8,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 40,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=3&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=3&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T04:00:00+01:00",
+    "EpochDateTime": 1707274800,
+    "WeatherIcon": 12,
+    "IconPhrase": "Showers",
+    "HasPrecipitation": true,
+    "PrecipitationType": "Rain",
+    "PrecipitationIntensity": "Light",
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.8,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 51,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=4&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=4&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T05:00:00+01:00",
+    "EpochDateTime": 1707278400,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.6,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 47,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=5&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=5&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T06:00:00+01:00",
+    "EpochDateTime": 1707282000,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": false,
+    "Temperature": {
+      "Value": 7.5,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 36,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=6&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=6&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T07:00:00+01:00",
+    "EpochDateTime": 1707285600,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": true,
+    "Temperature": {
+      "Value": 7.2,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 20,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=7&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=7&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T08:00:00+01:00",
+    "EpochDateTime": 1707289200,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": true,
+    "Temperature": {
+      "Value": 7.7,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 20,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=8&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=8&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T09:00:00+01:00",
+    "EpochDateTime": 1707292800,
+    "WeatherIcon": 1,
+    "IconPhrase": "Sun",
+    "HasPrecipitation": false,
+    "IsDaylight": true,
+    "Temperature": {
+      "Value": 8,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 20,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=9&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=9&unit=c&lang=en-us"
+  },
+  {
+    "DateTime": "2024-02-07T10:00:00+01:00",
+    "EpochDateTime": 1707296400,
+    "WeatherIcon": 7,
+    "IconPhrase": "Cloudy",
+    "HasPrecipitation": false,
+    "IsDaylight": true,
+    "Temperature": {
+      "Value": 8.8,
+      "Unit": "C",
+      "UnitType": 17
+    },
+    "PrecipitationProbability": 20,
+    "MobileLink": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=10&unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/pl/lublin/274231/hourly-weather-forecast/274231?day=2&hbhhour=10&unit=c&lang=en-us"
+  }
+]

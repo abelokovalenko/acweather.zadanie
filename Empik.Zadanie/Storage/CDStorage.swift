@@ -35,7 +35,7 @@ class CDStorage: Storage {
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \StoredCity.date_displayed,
                                                          ascending: false)]
 
-        if let city = try? managedContext.fetch(fetchRequest)[at] {
+        if let city = try? managedContext.fetch(fetchRequest)[safe: at] {
             return City(key: city.key!, description: city.country, name: city.name)
         }
         

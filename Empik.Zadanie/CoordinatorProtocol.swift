@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  CoordinatorProtocol.swift
 //  Empik.Zadanie
 //
 //  Created by Andrey Belokovalenko on 05/02/2024.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol Coordinator {
+protocol CoordinatorProtocol: AnyObject {
     associatedtype InitialData
-    associatedtype NavigationData
+    associatedtype Navigation
     
     var navigationController: UINavigationController! { get set }
     var network: NetworkProtocol! { get set }
     var initialData: InitialData! { get set }
     
-    func navigate(with data: NavigationData)
+    func navigate(to : Navigation)
     func start()
 }

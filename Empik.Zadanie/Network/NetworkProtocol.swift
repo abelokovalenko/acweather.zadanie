@@ -10,6 +10,7 @@ import Combine
 
 protocol NetworkProtocol {
     func searchCity(request: String) -> AnyPublisher<[AWCity], NetworkError>
-    
+    func lookup(request: String) -> AnyPublisher<[AWCity], NetworkError>
     func weather(key: String) -> AnyPublisher<Weather, NetworkError>
+    func forecast(key: String) -> AnyPublisher<[Forecast], NetworkError>
 }

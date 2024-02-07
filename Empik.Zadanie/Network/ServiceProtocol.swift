@@ -8,11 +8,9 @@
 import Foundation
 import Combine
 
-enum ServiceError: Error {
-    case common
-}
-
 protocol ServiceProtocol {
     func searchCity(request: CitySearchRequest) -> AnyPublisher<CitiesResponse, ServiceError>
+    func lookup(request: CitySearchRequest) -> AnyPublisher<CitiesResponse, ServiceError>
     func weather(request: WeatherRequest) -> AnyPublisher<WeatherResponse, ServiceError>
+    func forecast(request: WeatherRequest) -> AnyPublisher<ForecastResponse, ServiceError>
 }

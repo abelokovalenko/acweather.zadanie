@@ -8,39 +8,24 @@
 import UIKit
 
 class CitiesSearchViewController: UIViewController, CitiesSearchView {
-    func showActivity() {
-        let actiivity = UIActivityIndicatorView()
-        actiivity.frame.size.height = 50
-        actiivity.startAnimating()
-        tableView.tableFooterView = actiivity
-    }
-    
-    func hideActivity() {
-        tableView.tableFooterView = nil
-    }
-    
     @IBOutlet private weak var tableView: UITableView!
-    
-    var viewModel: ViewModel!
-    
-    var searchViewModel: CitiesSearchViewModel {
-        viewModel as! CitiesSearchViewModel
+
+    var viewModel: ViewModelProtocol!
+    private var searchViewModel: CitiesSearchViewModel? {
+        viewModel as? CitiesSearchViewModel
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: add lookup
-        
-        title = "Cities".localized
         navigationItem.backButtonTitle = ""
-        
-        searchViewModel.setup(for: tableView)
+        setEmptyFooter()
+        searchViewModel?.setup(for: tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchViewModel.viewWillAppear()
+        searchViewModel?.viewWillAppear()
     }
     
     func reload() {
@@ -48,13 +33,23 @@ class CitiesSearchViewController: UIViewController, CitiesSearchView {
     }
     
     func show(error: Error) {
-        let alertController = UIAlertController(title: "Error".localized,
-                                                message: error.localizedDescription,
-                                                preferredStyle: .alert)
-            
-        let okAction = UIAlertAction(title: "OK".localized, style: .default)
-        alertController.addAction(okAction)
-
-        present(alertController, animated: true, completion: nil)
+        dialogue(title: "Error".localized,
+                 description: error.localizedDescription,
+                 actionTitle: "Ok".localized)
+    }
+    
+    func showActivity() {
+        let activity = UIActivityIndicatorView()
+        activity.frame.size.height = 50
+        activity.startAnimating()
+        tableView.tableFooterView = activity
+    }
+    
+    func hideActivity() {
+        setEmptyFooter()
+    }
+        
+    private func setEmptyFooter() {
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Storage: Source {
+protocol Storage: CitiesSourceProtocol {
     func append(city: City)
     func delete(city: City)
 }

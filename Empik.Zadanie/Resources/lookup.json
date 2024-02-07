@@ -1,0 +1,152 @@
+[
+  {
+    "Version": 1,
+    "Key": "113486",
+    "Type": "City",
+    "Rank": 21,
+    "LocalizedName": "Lubumbashi",
+    "Country": {
+      "ID": "CD",
+      "LocalizedName": "Democratic Republic of the Congo"
+    },
+    "AdministrativeArea": {
+      "ID": "HK",
+      "LocalizedName": "Haut-Katanga"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "274231",
+    "Type": "City",
+    "Rank": 31,
+    "LocalizedName": "Lublin",
+    "Country": {
+      "ID": "PL",
+      "LocalizedName": "Poland"
+    },
+    "AdministrativeArea": {
+      "ID": "06",
+      "LocalizedName": "Lublin"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "2332790",
+    "Type": "City",
+    "Rank": 35,
+    "LocalizedName": "Lubei District",
+    "Country": {
+      "ID": "CN",
+      "LocalizedName": "China"
+    },
+    "AdministrativeArea": {
+      "ID": "HE",
+      "LocalizedName": "Hebei"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "4182",
+    "Type": "City",
+    "Rank": 41,
+    "LocalizedName": "Lubango",
+    "Country": {
+      "ID": "AO",
+      "LocalizedName": "Angola"
+    },
+    "AdministrativeArea": {
+      "ID": "HUI",
+      "LocalizedName": "Huila"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "106181",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Lubei Town",
+    "Country": {
+      "ID": "CN",
+      "LocalizedName": "China"
+    },
+    "AdministrativeArea": {
+      "ID": "NM",
+      "LocalizedName": "Inner Mongolia"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "3431302",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Lubuk Baja",
+    "Country": {
+      "ID": "ID",
+      "LocalizedName": "Indonesia"
+    },
+    "AdministrativeArea": {
+      "ID": "KR",
+      "LocalizedName": "Riau Islands"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "3431385",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Lubuk Begalung",
+    "Country": {
+      "ID": "ID",
+      "LocalizedName": "Indonesia"
+    },
+    "AdministrativeArea": {
+      "ID": "SB",
+      "LocalizedName": "West Sumatra"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "265340",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Lubao",
+    "Country": {
+      "ID": "PH",
+      "LocalizedName": "Philippines"
+    },
+    "AdministrativeArea": {
+      "ID": "PAM",
+      "LocalizedName": "Pampanga"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "263016",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Lubin",
+    "Country": {
+      "ID": "PL",
+      "LocalizedName": "Poland"
+    },
+    "AdministrativeArea": {
+      "ID": "02",
+      "LocalizedName": "Lower Silesia"
+    }
+  },
+  {
+    "Version": 1,
+    "Key": "331131",
+    "Type": "City",
+    "Rank": 45,
+    "LocalizedName": "Lubbock",
+    "Country": {
+      "ID": "US",
+      "LocalizedName": "United States"
+    },
+    "AdministrativeArea": {
+      "ID": "TX",
+      "LocalizedName": "Texas"
+    }
+  }
+]

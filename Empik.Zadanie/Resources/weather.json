@@ -2,10 +2,10 @@
   {
     "LocalObservationDateTime": "2024-02-05T16:57:00+00:00",
     "EpochTime": 1707152220,
-    "WeatherText": "Cloudy",
-    "WeatherIcon": 7,
-    "HasPrecipitation": false,
-    "PrecipitationType": null,
+    "WeatherText": "Rainy",
+    "WeatherIcon": 18,
+    "HasPrecipitation": true,
+    "PrecipitationType": "Rain",
     "IsDayTime": false,
     "Temperature": {
       "Metric": {

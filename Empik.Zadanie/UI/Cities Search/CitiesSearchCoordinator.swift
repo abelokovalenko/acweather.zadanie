@@ -11,7 +11,7 @@ enum CitiesSearchCoordinatorNavigation {
     case weather(City)
 }
 
-class CitiesSearchCoordinator: Coordinator {
+class CitiesSearchCoordinator: CoordinatorProtocol {
     
     var network: NetworkProtocol!
     var navigationController: UINavigationController!
@@ -30,8 +30,8 @@ class CitiesSearchCoordinator: Coordinator {
         navigationController.pushViewController(searchViewController, animated: true)
     }
 
-    func navigate(with data: CitiesSearchCoordinatorNavigation) {
-        if case let .weather(city) = data {
+    func navigate(to navigation: CitiesSearchCoordinatorNavigation) {
+        if case let .weather(city) = navigation {
             let weatherCoordinator = WeatherCoordinator()
             weatherCoordinator.network = network
             weatherCoordinator.navigationController = navigationController
