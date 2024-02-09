@@ -157,24 +157,41 @@ extension CitiesSearchViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
-        var contentConfig = cell.defaultContentConfiguration()
-
-        if let city = city(index: indexPath) {
-            contentConfig.text = city.name
-            contentConfig.secondaryText = city.description
-        } else {
-            switch state {
-            case .history:
-                contentConfig.text = "No recent cities".localized
-                contentConfig.secondaryText = "Your viewed cities will appear here".localized
-            case .search:
-                contentConfig.text = "Nothing found".localized
+        if #available(iOS 14.0, *) {
+            var contentConfig = cell.defaultContentConfiguration()
+            if let city = city(index: indexPath) {
+                contentConfig.text = city.name
+                contentConfig.secondaryText = city.description
+            } else {
+                switch state {
+                case .history:
+                    contentConfig.text = "No recent cities".localized
+                    contentConfig.secondaryText = "Your viewed cities will appear here".localized
+                case .search:
+                    contentConfig.text = "Nothing found".localized
+                }
+                contentConfig.textProperties.alignment = .center
+                contentConfig.secondaryTextProperties.alignment = .center
             }
-            contentConfig.textProperties.alignment = .center
-            contentConfig.secondaryTextProperties.alignment = .center
+            
+            cell.contentConfiguration = contentConfig
+        } else {
+            if let city = city(index: indexPath) {
+                cell.textLabel?.text = city.name
+                cell.detailTextLabel?.text = city.description
+            } else {
+                switch state {
+                case .history:
+                    cell.textLabel?.text = "No recent cities".localized
+                    cell.detailTextLabel?.text = "Your viewed cities will appear here".localized
+                case .search:
+                    cell.textLabel?.text = "Nothing found".localized
+                }
+                cell.textLabel?.textAlignment = .center
+                cell.detailTextLabel?.textAlignment = .center
+            }
         }
-        
-        cell.contentConfiguration = contentConfig
+
         return cell
     }
     
